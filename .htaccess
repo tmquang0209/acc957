@@ -1,0 +1,83 @@
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access 1 year"
+ExpiresByType image/jpeg "access 1 year"
+ExpiresByType image/gif "access 1 year"
+ExpiresByType image/png "access 1 year"
+ExpiresByType text/css "access 1 month"
+ExpiresByType text/html "access 1 month"
+ExpiresByType application/pdf "access 1 month"
+ExpiresByType text/x-javascript "access 1 month"
+ExpiresByType application/x-shockwave-flash "access 1 month"
+ExpiresByType image/x-icon "access 1 year"
+ExpiresDefault "access 1 month"
+</IfModule>
+## EXPIRES CACHING ##
+# Bảo vệ file .htaccess
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+# Url chuyên mục
+RewriteEngine on
+#admin
+RewriteRule ^admin/user$ admin/user.php
+RewriteRule ^admin/list_sosinh$ admin/account.php?value=sosinh
+RewriteRule ^admin/list_sosinh/([0-9]+)$ admin/account.php?value=sosinh&id=$1
+
+RewriteRule ^admin/list_tamtrung$ admin/account.php?value=tamtrung
+RewriteRule ^admin/list_tamtrung/([0-9]+)$ admin/account.php?value=tamtrung&id=$1
+
+RewriteRule ^admin/list_vatpham$ admin/account.php?value=vatpham
+RewriteRule ^admin/list_vatpham/([0-9]+)$ admin/account.php?value=vatpham&id=$1
+
+RewriteRule ^admin/list_freefire$ admin/account.php?value=freefire
+RewriteRule ^admin/list_freefire/([0-9]+)$ admin/account.php?value=freefire&id=$1
+
+RewriteRule ^admin/list_lienquan$ admin/account.php?value=lienquan
+RewriteRule ^admin/list_lienquan/([0-9]+)$ admin/account.php?value=lienquan&id=$1
+
+RewriteRule ^admin/upload_sosinh$ admin/upload_nro.php?value=sosinh
+RewriteRule ^admin/upload_tamtrung$ admin/upload_nro.php?value=tamtrung
+RewriteRule ^admin/upload_vatpham$ admin/upload_nro.php?value=vatpham
+RewriteRule ^admin/upload_random$ admin/upload_nro.php?value=random
+
+RewriteRule ^admin/edit_sosinh/([0-9]+)$ admin/edit_nro.php?id=$1
+RewriteRule ^admin/edit_tamtrung/([0-9]+)$ admin/edit_nro.php?id=$1
+RewriteRule ^admin/edit_vatpham/([0-9]+)$ admin/edit_nro.php?id=$1
+RewriteRule ^admin/edit_freefire/([0-9]+)$ admin/edit_ff.php?id=$1
+RewriteRule ^admin/edit_lienquan/([0-9]+)$ admin/edit_lqm.php?id=$1
+
+RewriteRule ^admin/upload_freefire$ admin/upload_ff.php
+RewriteRule ^admin/upload_lienquan$ admin/upload_lqm.php
+
+RewriteRule ^admin/history_card$ admin/history.php?value=topup
+RewriteRule ^admin/history_account$ admin/history.php?value=account
+RewriteRule ^admin/history_balance$ admin/history.php?value=balance
+
+RewriteRule ^admin/setting$ admin/setting.php
+RewriteRule ^admin/setting_notification$ admin/setting_noti.php
+RewriteRule ^admin/service$ admin/service.php
+RewriteRule ^admin/service/([0-9]+)$ admin/service.php?id=$1
+
+
+RewriteRule ^ngocrong-sosinh$ public/nro_sosinh.php
+RewriteRule ^ngocrong-tamtrung public/nro_tamtrung.php
+RewriteRule ^ngocrong-vatpham public/nro_vatpham.php
+RewriteRule ^freefire public/freefire.php
+RewriteRule ^lienquan public/lienquan.php
+RewriteRule ^view/([0-9]+) public/view.php?id=$1
+
+RewriteRule ^thong-tin-tai-khoan profile/index.php
+RewriteRule ^Home/Deposit profile/napthe.php
+RewriteRule ^Home/BuyNickLog profile/buynick.php
+RewriteRule ^Home/Dichvudathue profile/service_history.php
+
+
+
+RewriteRule ^login_facebook facebook_login/index.php
+RewriteRule ^dang-nhap signin.php
+RewriteRule ^dang-ky signup.php
