@@ -78,7 +78,7 @@ RewriteRule ^Home/Dichvudathue profile/service_history.php
 
 RewriteRule ^buyacc/([0-9]+) ajax/buy.php?id=$1
 RewriteRule ^thanhtoan xuly/buy.php
-
+RewriteRule ^dang-xuat logout.php
 
 
 RewriteRule ^login_facebook facebook_login/index.php
