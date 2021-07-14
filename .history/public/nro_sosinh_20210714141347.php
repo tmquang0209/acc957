@@ -52,7 +52,7 @@ require('head.php');
                 <div class="row">
                     <div class="col-md-12 header-title-buy">
                         <div class="content_post">
-                           <?php echo setting('noti_sosinh');?>
+                           <?php echo setting('noti_tamtrung');?>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ if(isset($_POST['Reg'])){
     $tel = (int)$_POST['tel'];
     $pass = xss($_POST['password']);
     $repass = xss($_POST['repassword']);
-
+ccc
     $check = $db->query("select `username`,`password` from `user` where `username` = '$user' limit 1")->fetch();
 
     if($user != null && $tel != null && $pass != null && $repass != null){
@@ -21,7 +21,7 @@ if(isset($_POST['Reg'])){
             (`username`, `password`, `email`, `phone`, `cash`, `admin`, `ban`, `date`) 
             VALUES 
             ('$user','".mahoa($pass)."','$email','$tel',0,0,0,'".date('d-m-Y')."')");
-            $success =  'Dang ky thanh cong';
+            $err =  'Dang ky thanh cong';
             }else{ $err = 'Password khong giong nhau'; }
         }else{ $err = 'Username da ton tai'; }
     }else{ $err = 'Vui long nhap du thong tin'; }
@@ -141,10 +141,6 @@ if(isset($_POST['Reg'])){
 <?php 
 if(isset($err)){
     echo '<script>swal("Error!", "'.$err.'", "error");</script>';
-}
-
-if(isset($success)){
-    echo '<script>swal("Success!", "'.$success.'", "success");</script>';
 }
 ?>
 </html>

@@ -21,7 +21,7 @@ if(isset($_POST['Reg'])){
             (`username`, `password`, `email`, `phone`, `cash`, `admin`, `ban`, `date`) 
             VALUES 
             ('$user','".mahoa($pass)."','$email','$tel',0,0,0,'".date('d-m-Y')."')");
-            $success =  'Dang ky thanh cong';
+            $err =  'Dang ky thanh cong';
             }else{ $err = 'Password khong giong nhau'; }
         }else{ $err = 'Username da ton tai'; }
     }else{ $err = 'Vui long nhap du thong tin'; }
@@ -141,10 +141,6 @@ if(isset($_POST['Reg'])){
 <?php 
 if(isset($err)){
     echo '<script>swal("Error!", "'.$err.'", "error");</script>';
-}
-
-if(isset($success)){
-    echo '<script>swal("Success!", "'.$success.'", "success");</script>';
 }
 ?>
 </html>

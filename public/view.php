@@ -62,8 +62,18 @@ $loainick = 'LIÊN QUÂN MOBILE';
                         <div class="col-md-3">
                                 <div class="form-group row">
                                             <div class="col-xs-6 ar">
-                                                <a href="/SYS_Users/Login?refURL=/home/buynickdetail?id=525823b5-f34a-4b97-b362-1809d7b9eb23" class="btn btn-info btn-block btn2">MUA NGAY</a>
-                                                <a href="javascript:void(0);" data-toggle='modal' data-target='#Modal_ATM' class="btn btn-success btn-block btn2">ATM/VÍ</a>
+                                                <?php 
+if(data_user('username') == null){
+                                                ?>
+                                                
+                                                
+<a href="/dang-nhap" class="btn btn-info btn-block btn2">MUA NGAY</a>
+
+
+<?php }else{ ?>
+    <button type="button" class="btn btn-info btn-block btn2 load-modal" rel="/buyacc/<?=$id;?>">Mua ngay</button>
+<?php } ?>
+    <a href="javascript:void(0);" data-toggle='modal' data-target='#Modal_ATM' class="btn btn-success btn-block btn2">ATM/VÍ</a>
                                             </div>
                                             <div class="col-xs-6">
 

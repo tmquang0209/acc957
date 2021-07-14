@@ -142,9 +142,5 @@ if(isset($_POST['Reg'])){
 if(isset($err)){
     echo '<script>swal("Error!", "'.$err.'", "error");</script>';
 }
-
-if(isset($success)){
-    echo '<script>swal("Success!", "'.$success.'", "success");</script>';
-}
 ?>
 </html>
