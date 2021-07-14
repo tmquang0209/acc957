@@ -44,7 +44,7 @@ require('head.php');
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 text-center" style="font-family:Roboto; margin-bottom: 20px;">
-                    <h2 style="color: #19b1ff;">Ngọc rồng Online - SƠ SINH</h2>
+                    <h2 style="color: #19b1ff;">Ngọc rồng Online - TẦM TRUNG</h2>
                     <div style="width: 140px; height: 1px; margin: 20px auto; border-bottom: 4px solid #19b1ff;"></div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ require('head.php');
                 <div class="row">
                     <div class="col-md-12 header-title-buy">
                         <div class="content_post">
-                           <?php echo setting('noti_sosinh');?>
+                           <?php echo setting('noti_tamtrung');?>
                         </div>
                     </div>
                 </div>

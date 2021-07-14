@@ -144,7 +144,7 @@ if(isset($err)){
 }
 
 if(isset($success)){
-    echo '<script>swal("Success!", "'.$success.'", "success");</script>';
+    echo '<script>swal("Success!", "'.$success.'", "error");</script>';
 }
 ?>
 </html>
