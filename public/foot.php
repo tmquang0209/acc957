@@ -49,80 +49,73 @@
         </div>
     </div>
 </footer>
-<div class="modal fade" id="thongbao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                    Thông báo
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </h5>
-
-            </div>
-            <div class="modal-body">
-                <div id="thongbaodata">
-
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-            </div>
-        </div>
-    </div>
+<div class="modal fade" id="noticeModal" role="dialog" style="display: none;" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">×</span>
+</button>
+<h4 class="modal-title" style="font-weight: bold;text-transform: uppercase;color: #FF0000;text-align: center">Thông báo</h4>
 </div>
-
-
-
-<!-- END: footer -->
-<script>
-    $(document).ready(function() {
-        if ($("#mess").val() != '') {
-            swal($("#mess").val());
+<div class="modal-body" style="font-family: helvetica, arial, sans-serif;"><?=html_entity_decode(setting('notification'));?></div>
+<div class="modal-footer">
+<button type="button" class="btn c-theme-btn c-btn-border-2x c-btn-square c-btn-bold c-btn-uppercase" data-dismiss="modal">Đóng</button>
+</div>
+</div>
+</div>
+</div>
+<style type="text/css">
+    @media  only screen and (min-width: 768px){
+        .row-flex-safari .classWithPad {
+            height: 389px;
+            max-height: 360px;
         }
-        $(".atm").on("click", function() {
-            $(".atm").removeClass('btn-info');
-            $(this).addClass('btn-info');
-        });
-        $('.Date').datepicker({
-            format: 'dd/mm/yyyy',
-            language: "vi",
-            orientation: "right",
-            autoclose: true
-        });
-    });
-</script>
+    }
+</style>
 <script>
-    $(function() {
-        $('input[name="daterange"]').daterangepicker({
-            opens: 'left'
-        }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        });
-    });
-</script>
-<div style="display: none" id="notice">
-    <p style="text-align:center"><?= setting('notification'); ?></p>
+
+            $(document).ready(function(){
+                if ($.cookie('noticeModal') != '1') {
+
+                    $('#noticeModal').modal('show')
+                    //show popup here
+
+                    var date = new Date();
+                    var minutes = 60;
+                    date.setTime(date.getTime() + (minutes * 60 * 1000));
+                    $.cookie('noticeModal', '1', { expires: date}); }
+            });
+        </script>
 
 </div>
+<div class="modal fade" id="noticeModal" role="dialog" style="display: none;" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+<div class="modal-content"><?=html_entity_decode(setting('notification'));?></div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="LoadModal" role="dialog" style="display: none;" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="loader" style="text-align: center"><img src="/assets/frontend/images/loader.gif" style="width: 50px;height: 50px;display: none"></div>
+<div class="modal-content">
+</div>
+</div>
+</div>
 <script>
-    $(document).ready(function() {
-        //swal({
-        //    title: 'DichVuGame.vn - Thông báo',
-        //    html: true,
-        //    text: $("#notice").html(),
-        //    showCloseButton: true,
-        //    focusConfirm: false,
-        //});
-
-        $("#thongbaodata").html($("#notice").html());
-        $("#thongbao").modal('show');
-
+    $(document).ready(function () {
+        $('.load-modal').each(function (index, elem) {
+            $(elem).unbind().click(function (e) {
+                e.preventDefault();
+                e.preventDefault();
+                var curModal = $('#LoadModal');
+                curModal.find('.modal-content').html("<div class=\"loader\" style=\"text-align: center\"><img src=\"/assets/frontend/images/loader.gif\" style=\"width: 50px;height: 50px;\"></div>");
+                curModal.modal('show').find('.modal-content').load($(elem).attr('rel'));
+            });
+        });
     });
 </script>
-
 <div class="modal fade" id="Modal_ATM" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
