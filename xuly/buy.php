@@ -54,7 +54,7 @@ if($data['id'] == null){
     `cash` = '".$data['cash']."', 
     `date` = '".time()."'
     ");
-    echo '<script> window.location="/profile/tran_acc"; </script>';
+    echo '<script> window.location="/Home/BuyNickLog"; </script>';
 }
 print $result;
 
