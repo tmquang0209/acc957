@@ -221,7 +221,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/dang-ky" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
+                                    <a href="/dang-xuat" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
                                         <i class="icon-key icons"></i> Đăng Xuất
                                     </a>
                                 </li>

@@ -121,7 +121,7 @@ if(isset($_GET['value']))
                                 <td><?= $data['username']; ?></td>
                                 <td><?= $data['id_acc']; ?></td>
                                 <td><?= $data['cash'] ?></td>
-                                <td><?= $data['date']; ?></td>
+                                <td><?= date("H:i:s d-m-Y",$data['date']); ?></td>
             </div>
             </td>
             </tr>
