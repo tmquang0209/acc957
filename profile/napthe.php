@@ -163,127 +163,65 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
         </div>
+        <table class="table table-hover table-custom-res">
+<tbody>
+<tr>
+<th>Thời gian</th>
+<th>Serial/Code</th>
+<th>Nhà mạng</th>
+<th>Mệnh giá</th>
+<th>Trạng thái</th>
 
-        <section id="dv" class="countdown groomsmen-bridesmaids">
-            <div class="row">
-                <div class="panel-heading clearfix text-center" style="color: #fdfdfd; background: #30b9ff; padding: 10px 15px;">
-                    <span class="t24 bb">LỊCH SỬ NẠP THẺ</span>
-                </div>
-            </div>
-            <div class="overlay"></div>
-            <div class="row">
-                <div id="LogDonate">
+</tr>
+</tbody>
+<tbody>
+<?php
+$limit = 10;
+if (isset($_GET["page"]))
+{
+    $page = $_GET["page"];
+    settype($page, "int");
+}
+else
+{
+    $page = 1;
+}
+$from = ($page - 1) * $limit;
 
-                </div>
-            </div>
-        </section>
-        <script>
-            function Donate() {
-                showLoading();
-                $.ajax({
-                    type: 'POST',
-                    url: '/Home/Deposit',
-                    data: $("#frmDonate *").serialize(),
-                    success: function(data) {
-                        if (data.Code == 1) {
-                            swal("Thông báo", data.Messeger);
-                            hideLoading();
-                            LoadTable('LogDonate', '/Home/LoadDepositList', 1);
-                            document.getElementById('imgcaptcha').src = '/Home/Captcha?' + Math.random();
-                            $("#NetworkSeri").val('');
-                            $("#NetworkCode").val('');
-                            $("#Captcha").val('');
-                        } else {
-                            swal("Lỗi!", data.Messeger);
-                            hideLoading();
-                        }
+$data = $db->query("SELECT * FROM `napthe` WHERE `username` = '" . data_user('username') . "' LIMIT $from,$limit");
 
-                    },
-                    error: function(data) {
-                        hideLoading();
-                    }
-                });
-            }
-            $(document).ready(function() {
-                LoadTable('LogDonate', '/Home/LoadDepositList', 1);
+foreach ($data as $row)
+{
+?>
+    <tr>
+        <td><?=$row['date']; ?></td>
+        <td><?=$row['serial'].'/'.$row['pin'];?></td>
+        <td><?=$row['telco']; ?></td>
+        <td><?=number_format($row['amount']); ?><sup>đ</sup></td>
+        <td><?=$row['status']; ?></td>
+        
+        
+    </tr>
+    <?php
+}
+?>
+</tbody>
+</table>
 
-                function loadDataTable() {
-                    var table = $('#tb_hisser').DataTable({
-                        "lengthChange": false,
-                        "searching": false,
-                        "pageLength": 10,
-                        info: false,
-                        "ordering": false,
-                        "scrollX": true,
-                        "language": {
-                            "sProcessing": "Đang xử lý...",
-                            "sLengthMenu": "Xem _MENU_ mục",
-                            "sZeroRecords": "Không có dữ liệu",
-                            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                            "sInfoPostFix": "",
-                            "sSearch": "Tìm:",
-                            "sUrl": "",
-                            "oPaginate": {
-                                "sFirst": "<<",
-                                "sPrevious": "<",
-                                "sNext": ">",
-                                "sLast": ">>"
-                            }
-                        }
-                    });
-                }
-                $("#Donate").on("click", function() {
-                    Donate();
-                    event.preventDefault();
-                });
-                $("#Network").change(function() {
-                    showLoading();
-                    $.ajax({
-                        type: 'POST',
-                        url: '/Home/GetCardValueByNetWork',
-                        data: {
-                            code: $("#Network").val()
-                        },
-                        success: function(data) {
-                            $("#CardValue").html('');
-                            if (data.Code == 1) {
-                                hideLoading();
-                                $("#CardValue").append("<option>Chọn mệnh giá</option>");
-                                $.each(data.Data, function(key, value) {
-                                    $("#CardValue").append("<option value='" + value.Value + "'>" + value.Text + "</option>");
-                                });
-                            } else {
-                                $("#CardValue").append("<option>Chọn mệnh giá</option>");
-                                swal("Lỗi!", data.Messeger);
-                                hideLoading();
-                            }
-
-                        },
-                        error: function(data) {
-                            hideLoading();
-                        }
-                    });
-                });
-                $("#CardValue").change(function() {
-                    if ($(this).val() > 0)
-                        $("#MoneyConsum").val(formatNumber($(this).val(), '.', ',') + " VNĐ");
-                    else
-                        $("#MoneyConsum").val("0 VNĐ");
-                });
-            });
-        </script>
-
-    </div>
+<div class="data_paginate paging_bootstrap paginations_custom" style="text-align: center">
+<?php
+$tong = $db->query("SELECT `id` FROM `napthe` WHERE `username` = '" . data_user('username') . "'")
+    ->rowcount();
+if ($tong > $sotin1trang)
+{
+    echo '<center>' . phantrang('/Home/Deposit?', $from, $tong, $limit) . '</center>';
+} ?>
 </div>
 </div>
 </section>
 </div>
 </div>
 </div>
-</div>
-<!-- END: PAGE CONTENT -->
 </div>
 </body>
 <script>
@@ -296,62 +234,6 @@ if (isset($_POST['submit'])) {
                 $(this).addClass('active');
             }
         });
-        var table = $('#tb_hisser').DataTable({
-            "lengthChange": false,
-            "searching": false,
-            "pageLength": 5,
-            info: false,
-            "ordering": false,
-            "scrollX": true,
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không có dữ liệu",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "<<",
-                    "sPrevious": "<",
-                    "sNext": ">",
-                    "sLast": ">>"
-                }
-            }
-        });
-    });
-    loadDataTable();
-
-    function loadDataTable(strName) {
-        var table = $('#tb_hisser').DataTable({
-            "lengthChange": false,
-            "searching": false,
-            "pageLength": 5,
-            info: false,
-            "ordering": false,
-            "scrollX": true,
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không có dữ liệu",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "<<",
-                    "sPrevious": "<",
-                    "sNext": ">",
-                    "sLast": ">>"
-                }
-            }
-        });
-
-    }
 </script>
 
 

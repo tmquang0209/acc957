@@ -62,6 +62,12 @@ RewriteRule ^admin/setting$ admin/setting.php
 RewriteRule ^admin/setting_notification$ admin/setting_noti.php
 RewriteRule ^admin/service$ admin/service.php
 RewriteRule ^admin/service/([0-9]+)$ admin/service.php?id=$1
+RewriteRule ^admin/setting_gold admin/setting_service.php?value=gold
+RewriteRule ^admin/setting_gem admin/setting_service.php?value=gem
+
+RewriteRule ^getExchange public/exchange.php
+RewriteRule ^Home/BuyGold public/banvang.php
+RewriteRule ^Home/BuyGem public/banngoc.php
 
 
 RewriteRule ^ngocrong-sosinh$ public/nro_sosinh.php

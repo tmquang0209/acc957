@@ -112,10 +112,10 @@ if($data['status'] == '2'){ header('Location: /admin/service'); }
                                 <td><?= $data['account'] . '|' . $data['password']; ?><br />
                                     Server: <?= $data['server']; ?></td>
                                 <td><?= number_format($data['amount']); ?></td>
-                                <td><?= $data['species']; ?></td>
+                                <td><?= $data['type']; ?></td>
                                 <td><?= $status[$data['status']]; ?></td>
                                 <td><?= $data['note']; ?></td>
-                                <td><?= $data['date']; ?></td>
+                                <td><?= date("H:i:s d-m-Y",$data['date']); ?></td>
                                 <td><a href="/admin/service/<?= $data['id']; ?>" class="btn btn-primary mr-2">Action</a></td>
             </div>
             </td>

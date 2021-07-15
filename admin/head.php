@@ -147,6 +147,18 @@
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Notification settings</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/setting_gold">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Gold settings</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/setting_gem">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Gem settings</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
