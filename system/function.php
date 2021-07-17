@@ -56,10 +56,22 @@ function exit_admin()
             header('Location: /');
         }
     }
+    if (data_user('id') == null) {
+        if (strpos($url, '/Home/Deposit')) {
+            header('Location: /');
+        }
+        if (strpos($url, '/thong-tin-tai-khoan')) {
+            header('Location: /');
+        }
+        if (strpos($url, '/Home/BuyNickLog')) {
+            header('Location: /');
+        }
+    }
 }
 exit_admin();
 
-function thongke($loai,$status){
+function thongke($loai, $status)
+{
     global $db;
     $total = $db->query("SELECT `id` FROM `nick` WHERE `loainick` = '$loai' AND `status` = '$status' ")->rowCount();
     return $total;

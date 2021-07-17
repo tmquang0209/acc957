@@ -33,7 +33,7 @@
                                                 <!---<li><a href="/Home/BuyRandomNickLog">Lịch sử vận may</a></li>--->
                                                 <li><a href="/Home/BuyNickLog">Tài khoản đã mua</a></li>
                                                <!---<li><a href="/Home/TaiKhoanTraGop">Tài khoản trả góp</a></li>---->
-                                                <li><a href="/Home/Dichvudathue">Dịch vụ đã thuê</a></li>
+                                               <!--- <li><a href="/Home/Dichvudathue">Dịch vụ đã thuê</a></li>---->
 
                                             </ul>
                                         </div>

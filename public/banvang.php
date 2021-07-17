@@ -7,29 +7,32 @@ if (isset($_POST['submit'])) {
     $server = intval($_POST['ServerID']);
     $username = xss($_POST['UserName']);
     $password = xss($_POST['Password']);
-    $money = (int)abs($_POST['Money']);
+    $money = isset($_POST['Money']) ? (int)abs($_POST['Money']) : 0;
 
     $gold = setting("gold_server_$server") * $money;
 
 
     if (!empty($server) || !empty($username) || !empty($password) || !empty($money)) {
+        if (data_user('username') != null) {
+            if (data_user('cash') >= $money) {
 
-        if (data_user('cash') >= $money) {
-
-            if (setting('gold_cash_min') <= $money) {
-                if ($server > 0 && $server <= 9) {
-                    $db->exec("INSERT INTO `service`
+                if (setting('gold_cash_min') <= $money) {
+                    if ($server > 0 && $server <= 9) {
+                        $db->exec("INSERT INTO `service`
     (`username`, `account`, `password`, `amount`,`cash`, `server`, `type`, `status`, `note`, `date`) 
     VALUES 
     ('" . data_user('username') . "'," . $db->quote($username) . "," . $db->quote($password) . "," . $db->quote($gold) . "," . $db->quote($money) . "," . $db->quote($server) . ",'banvang','0','','" . time() . "')");
-                    $db->exec("UPDATE `user` SET `cash` = `cash` - $money WHERE `username` = '" . data_user('username') . "' ");
-                    $success = 'Tạo đơn thành công!';
+                        $db->exec("UPDATE `user` SET `cash` = `cash` - $money WHERE `username` = '" . data_user('username') . "' ");
+                        $success = 'Tạo đơn thành công!';
+                    }
+                } else {
+                    $err = "Số tiền phải lớn hơn " . number_format(setting('gold_cash_min'));
                 }
             } else {
-                $err = "Số tiền phải lớn hơn " . number_format(setting('gold_cash_min'));
+                $err = "Số tiền không đủ. Vui lòng nạp thêm!";
             }
         } else {
-            $err = "Số tiền không đủ. Vui lòng nạp thêm!";
+            $err = "Vui lòng đăng nhập.";
         }
     } else {
         $err = "Vui lòng điền đầy đủ thông tin!";
@@ -202,7 +205,7 @@ if (isset($_POST['submit'])) {
                         $data = $db->query("SELECT * FROM `service` WHERE `username` = '" . data_user('username') . "' AND `type` = 'banvang' LIMIT $from,$limit");
 
                         foreach ($data as $row) {
-                            $status = array('WAITING','FAILED','SUCCESS');
+                            $status = array('WAITING', 'FAILED', 'SUCCESS');
                             $data_account = $db->query("SELECT * FROM `nick` WHERE `id` = '" . $row['id_acc'] . "'")->fetch();
                         ?>
                             <tr>

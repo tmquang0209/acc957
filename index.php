@@ -1,6 +1,10 @@
 ﻿<?php
 require('system/function.php');
 require('public/head.php');
+
+$giaodich_gem = $db->query("SELECT `id` FROM `service` WHERE `type` = 'banngoc' ")->rowCount();
+$giaodich_gold = $db->query("SELECT `id` FROM `service` WHERE `type` = 'banvang' ")->rowCount();
+
 ?>
 <div id="Listdv" class="c-content-box c-size-md c-bg-white groomsmen-bridesmaids">
     <div class="container">
@@ -15,13 +19,13 @@ require('public/head.php');
             <div class="row-flex-safari game-list">
                 <div class="col-sm-3 col-xs-6 p-5">
                     <div class="classWithPad1" style="border: 0px solid #cccccc;">
-                        <a href="/nap-tien" title="">
+                        <a href="/Home/Deposit" title="">
                             <div class="news_image">
                                 <img src="Img/NapThe.png">
                             </div>
                         </a>
                         <div class="news_title">
-                            <a href="/nap-tien" title="">NẠP THẺ</a>
+                            <a href="/Home/Deposit" title="">NẠP THẺ</a>
                         </div>
                     </div>
                 </div>
@@ -39,25 +43,25 @@ require('public/head.php');
                 </div>
                 <div class="col-sm-3 col-xs-6 p-5">
                     <div class="classWithPad1" style="border: 0px solid #cccccc;">
-                        <a href="/dich-vu" title="">
+                        <a href="#dich-vu" title="">
                             <div class="news_image">
                                 <img src="Img/DichVu.png">
                             </div>
                         </a>
                         <div class="news_title">
-                            <a href="/dich-vu" title="">DỊCH VỤ</a>
+                            <a href="#dich-vu" title="">DỊCH VỤ</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3 col-xs-6 p-5">
                     <div class="classWithPad1" style="border: 0px solid #cccccc;">
-                        <a href="/vong-quay" title="">
+                        <a href="/" title="">
                             <div class="news_image">
                                 <img src="Img/NickRandom.png">
                             </div>
                         </a>
                         <div class="news_title">
-                            <a href="/vong-quay" title="">VÒNG QUAY</a>
+                            <a href="/" title="">VÒNG QUAY</a>
                         </div>
                     </div>
                 </div>
@@ -243,7 +247,7 @@ require('public/head.php');
                             <a href="/Home/BuyGold" title="">BÁN VÀNG TỰ ĐỘNG</a>
                         </div>
                         <div class="news_description">
-                            <p>Tổng giao dịch: 87147</p>
+                            <p>Tổng giao dịch: <?=number_format($giaodich_gold);?></p>
                         </div>
                         <div class="a-more" style="margin-top: 40px;">
                             <div class="row">
@@ -267,7 +271,7 @@ require('public/head.php');
                             <a href="/Home/BuyGem" title="">BÁN NGỌC TỰ ĐỘNG</a>
                         </div>
                         <div class="news_description">
-                            <p>Tổng giao dịch: 86370</p>
+                            <p>Tổng giao dịch: <?=number_format($giaodich_gem);?></p>
                         </div>
                         <div class="a-more" style="margin-top: 40px;">
                             <div class="row">

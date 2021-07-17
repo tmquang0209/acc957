@@ -184,12 +184,8 @@
                         <ul class="nav navbar-nav c-theme-nav">
                             <li class="c-menu-type-classic active"><a href="/" class="c-link dropdown-toggle">TRANG CHỦ</a></li>
 
-                            <li class="c-menu-type-classic"><a href="/nap-tien" class="c-link dropdown-toggle">NẠP TIỀN</a></li>
-                            <li class="c-menu-type-classic"><a href="/dich-vu" class="c-link dropdown-toggle">DỊCH VỤ</a></li>
-
-
-                            <li class="c-menu-type-classic"><a href="/nick-game" class="c-link dropdown-toggle">NICK GAME</a></li>
-
+                            <li class="c-menu-type-classic"><a href="/Home/Deposit" class="c-link dropdown-toggle">NẠP TIỀN</a></li>
+            
                             <li class="c-menu-type-classic">
                                 <a href="https://www.acc957.com/huong-dan/HD-mod" class="c-link dropdown-toggle c-toggler">Tải Hack MOD<span class="c-arrow c-toggler"></span></a>
                                 <ul id="children-of-42" class="dropdown-menu c-menu-type-classic c-pull-left ">

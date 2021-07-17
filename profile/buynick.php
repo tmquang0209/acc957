@@ -85,12 +85,13 @@ else
 foreach ($data as $row)
 {
     $data_account = $db->query("SELECT * FROM `nick` WHERE `id` = '".$row['id_acc']."'")->fetch();
+    $loainick = array("Sơ Sinh","Tầm Trung","Vật Phẩm","FreeFire","Liên Quân Mobile");
 ?>
     <tr>
         <td><?=date("H:i:s d-m-Y", $row['date']); ?></td>
         <td><?=$row['id']; ?></td>
         <td><?=$data_account['account'].'/'.$data_account['password'];?></td>
-        <td><?=$data_account['loainick']; ?></td>
+        <td><?=$loainick[$data_account['loainick']]; ?></td>
         <td><?=number_format($row['cash']); ?><sup>đ</sup></td>
         
         
